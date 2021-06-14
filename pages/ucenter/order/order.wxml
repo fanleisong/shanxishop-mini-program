@@ -20,7 +20,7 @@
                
                 <view class="r">
 
-                    <button class="btnqx" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.handleOption.pay}}">取消</button>
+                    <button class="btnqx" data-order-index="{{index}}" catchtap="deleteOrder" wx:if="{{item.handleOption.pay}}">取消</button>
                     <button class="btn" data-order-index="{{index}}" catchtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</button>
                 </view>
             </view>

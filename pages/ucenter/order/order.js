@@ -47,7 +47,36 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
-  }
+  },
+  deleteOrder: function(options) {
+    let temorder_sn = this.data.orderList[options.target.dataset.orderIndex].order_sn;
+    wx.setStorageSync('temorder_sn',temorder_sn);
+    let that = this;
+    wx.showModal({
+      title: '',
+      confirmColor: '#b4282d',
+      content: '删除这个订单？',
+      success: function(res) {
+        if (res.confirm) {
+          util.request(api.OrderDelete,{
+            ordersn: wx.getStorageSync('temorder_sn'),
+          }, 'POST').then(function (res) {
+     
+            if (res.errno === 0) {
+            //  console.log(JSON.stringify(res));
+              that.setData({
+                orderList: res.data.data
+              });
+              // wx.navigateTo({
+              //   url: './order'
+              // });
+            }
+          });
+          that.getOrderList();
+        }
+      }
+    })
 
+  }
 
 })
