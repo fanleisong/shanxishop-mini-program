@@ -8,6 +8,7 @@ Page({
     actualPrice: 0.00
   },
   onLoad: function (options) {
+    console.log(JSON.stringify(options));
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
       orderId: options.orderId,

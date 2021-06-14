@@ -98,6 +98,7 @@ page{
 
 .order .b .r{
     float: right;
+    display: flex;
 }
 
 .order .b .btn{
@@ -110,4 +111,18 @@ page{
     font-size: 28rpx;
     color: #fff;
     background: #b4282d;
+    flex-direction:column;
+}
+.order .b .btnqx{
+    flex-direction:column;
+    margin-top: 19rpx;
+    margin-right: 19rpx;
+    height: 64.5rpx;
+    line-height: 64.5rpx;
+    text-align: center;
+    padding: 0 20rpx;
+    border-radius: 5rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background: #c3db81;
 }

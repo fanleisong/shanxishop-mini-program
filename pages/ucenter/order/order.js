@@ -11,7 +11,6 @@ Page({
     var currentPage = pages[pages.length - 1] 
     if(wx.getStorageSync('token')){this.getOrderList();}
     else{
-     
     wx.setStorageSync('goback',currentPage);
     wx.switchTab({
       url: '../index/index'
@@ -21,16 +20,20 @@ Page({
   getOrderList(){
     let that = this;
     util.request(api.OrderList).then(function (res) {
+     
       if (res.errno === 0) {
+      //  console.log(JSON.stringify(res));
         that.setData({
           orderList: res.data.data
         });
       }
     });
   },
-  payOrder(){
+  payOrder(options){
+  //  console.log(this.data.orderList[options.target.dataset.orderIndex].order_sn);
+    
     wx.redirectTo({
-      url: '/pages/pay/pay',
+      url: '/pages/pay/pay?orderId='+this.data.orderList[options.target.dataset.orderIndex].order_sn+'&actualPrice='+this.data.orderList[options.target.dataset.orderIndex].actual_price,
     })
   },
   onReady:function(){
@@ -45,5 +48,6 @@ Page({
   onUnload:function(){
     // 页面关闭
   }
+
 
 })
